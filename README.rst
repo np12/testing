@@ -158,14 +158,18 @@ Screenshots
 -----------
 
 Search:
+
 .. image:: http://i.imgur.com/SnqxqZz.png
 
 Playback:
-..image:: http://i.imgur.com/3sYlktI.png
-..image:: http://i.imgur.com/yzgQBmx.png
+
+.. image:: http://i.imgur.com/3sYlktI.png
+
+.. image:: http://i.imgur.com/yzgQBmx.png
 
 Playlists:
-..image:: http://i.imgur.com/RDEXLPW.png
+
+.. image:: http://i.imgur.com/RDEXLPW.png
 
 
 # Usage Example:
