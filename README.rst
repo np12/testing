@@ -28,9 +28,10 @@ Using git::
     
 Manually::
 
-Download [zip file]_ or [tar.gz file] and extract
-.. _[zip file]: https://github.com/np1/pms/archive/master.zip
-.. _[tar.gz file]: https://github.com/np1/pms/archive/master.tar.gz
+Download `zip file <https://github.com/np1/pms/archive/master.zip>`_ or `tar.gz file <https://github.com/np1/pms/archive/master.tar.gz >`_ and extract.
+
+https://github.com/np1/pms/archive/master.zip
+https://github.com/np1/pms/archive/master.tar.gz
 
 ### Mac OSX installation notes:
     
