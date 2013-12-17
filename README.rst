@@ -85,70 +85,74 @@ Enter `h` from within the program for help.
 
 
 Searching
----------
+~~~~~~~~~
 
 You can enter an artist/song name to search whenever the program is expecting text
 input. Searches must be prefixed with a . (dot) character.
 
-When a list of songs is displayed, you can use the following commands:
+When a list of songs is displayed, such as search results or a playlist, you can use the following commands:
 
 Downloading
------------
+~~~~~~~~~~~
 ``d 3`` to download song 3
 
 Selecting
 ---------
 
-```all``` to play all
+``all`` to play all displayed tracks
 
-```1,2,3``` to play songs 1 2 and 3
+``1,2,3`` to play songs 1 2 and 3
 
-```2-4, 6, 6-3``` to play songs 2, 3, 4, 6, 6, 5, 4, 3
+``2-4,6,6-3`` to play songs 2, 3, 4, 6, 6, 5, 4, 3
 
-Note: The commands ```shuffle``` and ```repeat``` can be inserted at the start or end of 
-any of the above to enable those modes: eg, ```shuffle 1,2,3``` and ```repeat 2-4, 1```
+Note: The commands ``shuffle`` and ``repeat`` can be inserted at the start or end of 
+any of the above to enable those modes: eg, ``shuffle 1,2,3`` and ``repeat 2-4,1``
 
 
-Manipulating
-------------
-```rm 1,3``` to remove songs 1 and 3.  Also use rm 1,2,5-7 to remove a range
+Editing
+~~~~~~~
+``rm 1,5`` to remove songs 1 and 5.
 
-```rm all``` to remove all songs
+``rm 1,2,5-7`` to remove songs 1,2 and 5-7.
 
-```sw 1,3``` to swap the position of songs 1 and 3
+``rm all`` to remove all songs
 
-```mv 1,3``` to move song 1 to postion 3
+``sw 1,3`` to swap the position of songs 1 and 3
+
+``mv 1,3`` to move song 1 to postion 3
 
 
 Playlist commands
------------------
+~~~~~~~~~~~~~~~~~
 
-```add 1,2,3``` to add songs 1,2 and 3 to the temporary playlist.  To add a range,
- ```add 1,2,5-7```  can be entered
+``add 1,2,3`` to add songs 1,2 and 3 to the current playlist. 
+
+``add 1-4,6,8-10`` to add songs 1 to 4, 6, and 8 to 10
     
-```add 1,2,3 playlist_name``` to add songs 1,2,3 to a saved playlist.  A new playlist will be created if it doesn't already exist.
+``add 1-4,7 <playlist_name>`` to add songs 1-4 and 7 to a saved playlist.  A new playlist will be created if it doesn't already exist.
 
-```ls``` to list your saved playlists
+``ls`` to list your saved playlists
 
-```open <playlist_name>``` to open a saved playlist as the current playlist
+``open <playlist_name>`` to open a saved playlist as the current playlist
 
-```vp``` to view the working playlist (then use rm, mv and sw to modify it)
+``vp`` to view the current playlist (then use rm, mv and sw to modify it)
 
-```save <playlist_name>``` to save the currently displayed songs as a stored
-    playlist on disk
+``save <playlist_name>`` to save the currently displayed songs as a stored playlist on disk
 
-```rm <playlist_name>``` to delete a playlist from disk
+``rm <playlist_name>`` to delete a playlist from disk
 
 You can load a playlist when invoking pms using the following command:
 
-    ```pms open <playlistname>```
+    ``pms open <playlistname>``
 
-```q``` to quit
+``q`` to quit
 
-```h``` for help
+``h`` for help
 
 
-# Screenshot
+Screenshots
+-----------
+
 ![pms running in terminal](http://i.imgur.com/Oqyz5vk.png "pms running in terminal")
 
 # Usage Example:
