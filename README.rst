@@ -1,8 +1,8 @@
 pms
 ===
-..image:: http://badge.fury.io/py/Poor-Mans-Spotify.png
+.. image:: http://badge.fury.io/py/Poor-Mans-Spotify.png
     :target: https://pypi.python.org/pypi/Poor-Mans-Spotify
-..image:: https://pypip.in/d/Poor-Mans-Spotify/badge.png
+.. image:: https://pypip.in/d/Poor-Mans-Spotify/badge.png
     :target: https://pypi.python.org/pypi/Poor-Mans-Spotify
 
 
