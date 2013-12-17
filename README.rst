@@ -180,8 +180,12 @@ Other Commands
 --------------
 
 ``top`` show top tracks this week
+
 ``top3m`` show top tracks for last 3 months
+
 ``top6m`` show top tracks for last 6 months
+
 ``topyear`` show top tracks for last year
+
 ``topall`` show all time top tracks
 
