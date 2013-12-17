@@ -35,24 +35,22 @@ Manually::
 Download `zip`_ or `tar`_ file and extract.
 
 
-https://github.com/np1/pms/archive/master.zip
-https://github.com/np1/pms/archive/master.tar.gz
-
-Mac OSX installation notes::
+Mac OSX installation notes
+~~~~~~~~~~~~~~~~~~~~~~~~~~
     
-Download mplayer
+Download mplayer::
 
     https://www.macupdate.com/app/mac/18580/mplayer
 
-Make a link for mplayer
+Make a link for mplayer::
 
     ln -s /Applications/MPlayer OSX.app/Contents/Resources/External_Binaries/mplayer.app/Contents/MacOS/mplayer /usr/local/bin/mplayer
 
-Install X11
+Install X11::
 
     http://xquartz.macosforge.org/landing/
     
-if using MplayerX: 
+if using MplayerX::
 
     ln -s /Applications/MPlayerX.app/Contents/Resources/binaries/x86_64/mplayer /usr/local/bin/mplayer
 
@@ -75,24 +73,28 @@ from within the pms directory;
 Usage
 -----
 
-    pms is run on the command line using the command:
+pms is run on the command line using the command::
     
     pms
     
-    or ./pms on Linux/MacOS if you are in the same directory
+or on Linux/MacOS if you are in the same directory::
+
+    ./pms
+    
+Enter `h` from within the program for help.
 
 
 Searching
 ---------
 
 You can enter an artist/song name to search whenever the program is expecting text
-input. Searches must be prefixed with a . character.
+input. Searches must be prefixed with a . (dot) character.
 
 When a list of songs is displayed, you can use the following commands:
 
 Downloading
 -----------
-Enter ```d 3``` to download song 3
+`d 3` to download song 3
 
 Selecting
 ---------
