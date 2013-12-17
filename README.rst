@@ -87,10 +87,11 @@ Enter `h` from within the program for help.
 Searching
 ~~~~~~~~~
 
-You can enter an artist/song name to search whenever the program is expecting text
-input. Searches must be prefixed with a . (dot) character.
+You can enter an artist/song name to search whenever the program is expecting
+text input. Searches must be prefixed with a . (dot) character.
 
-When a list of songs is displayed, such as search results or a playlist, you can use the following commands:
+When a list of songs is displayed, such as search results or a playlist, you
+can use the following commands:
 
 Downloading
 ~~~~~~~~~~~
@@ -105,8 +106,9 @@ Selecting
 
 ``2-4,6,6-3`` to play songs 2, 3, 4, 6, 6, 5, 4, 3
 
-Note: The commands ``shuffle`` and ``repeat`` can be inserted at the start or end of 
-any of the above to enable those modes: eg, ``shuffle 1,2,3`` and ``repeat 2-4,1``
+Note: The commands ``shuffle`` and ``repeat`` can be inserted at the start or
+end of any of the above to enable those play modes: eg, ``shuffle 1-4`` or
+``2-4,1 repeat`` 
 
 
 Editing
@@ -127,9 +129,10 @@ Playlist commands
 
 ``add 1,2,3`` to add songs 1,2 and 3 to the current playlist. 
 
-``add 1-4,6,8-10`` to add songs 1 to 4, 6, and 8 to 10
+``add 1-4,6,8-10`` to add songs 1-4, 6, and 8-10 to the current playlist
     
-``add 1-4,7 <playlist_name>`` to add songs 1-4 and 7 to a saved playlist.  A new playlist will be created if it doesn't already exist.
+``add 1-4,7 <playlist_name>`` to add songs 1-4 and 7 to a saved playlist.  A
+new playlist will be created if it doesn't already exist.
 
 ``ls`` to list your saved playlists
 
@@ -137,11 +140,12 @@ Playlist commands
 
 ``vp`` to view the current playlist (then use rm, mv and sw to modify it)
 
-``save <playlist_name>`` to save the currently displayed songs as a stored playlist on disk
+``save <playlist_name>`` to save the currently displayed songs as a stored
+playlist on disk
 
 ``rm <playlist_name>`` to delete a playlist from disk
 
-You can load a playlist when invoking pms using the following command:
+qYou can load a playlist when invoking pms using the following command:
 
     ``pms open <playlistname>``
 
@@ -153,7 +157,16 @@ You can load a playlist when invoking pms using the following command:
 Screenshots
 -----------
 
-![pms running in terminal](http://i.imgur.com/Oqyz5vk.png "pms running in terminal")
+Search:
+.. image:: http://i.imgur.com/SnqxqZz.png
+
+Playback:
+..image:: http://i.imgur.com/3sYlktI.png
+..image:: http://i.imgur.com/yzgQBmx.png
+
+Playlists:
+..image:: http://i.imgur.com/RDEXLPW.png
+
 
 # Usage Example:
 
