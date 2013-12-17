@@ -28,12 +28,21 @@ Using git::
     
 Manually::
 
-Download `zip file <https://github.com/np1/pms/archive/master.zip>`_ or `tar\.gz file <https://github.com/np1/pms/archive/master.tar.gz >`_ and extract.
+Download `zip`_ or `tar_` file and extract.
+
+.. _zip:
+https://github.com/np1/pms/archive/master.zip
+.. _tar:
+https://github.com/np1/pms/archive/master.tar.gz
+
+
+Download `zip file <https://github.com/np1/pms/archive/master.zip>`_ or
+Download `tar.gz file <https://github.com/np1/pms/archive/master.tar.gz >`_ and extract.
 
 https://github.com/np1/pms/archive/master.zip
 https://github.com/np1/pms/archive/master.tar.gz
 
-### Mac OSX installation notes:
+Mac OSX installation notes::
     
 Download mplayer
 
@@ -51,22 +60,24 @@ if using MplayerX:
 
     ln -s /Applications/MPlayerX.app/Contents/Resources/binaries/x86_64/mplayer /usr/local/bin/mplayer
 
-# Upgrading
+Upgrading
+---------
 
 It is recommended you update to the latest version
 
-### Upgrade pip installation:
+Upgrade pip installation::
 
     sudo pip install Poor-Mans-Spotify --upgrade
 
-### Upgrade git clone:
+Upgrade git clone::
 
 from within the pms directory;
 
     git pull
 
 
-# Usage
+Usage
+-----
 
     pms is run on the command line using the command:
     
