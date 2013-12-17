@@ -94,7 +94,7 @@ When a list of songs is displayed, you can use the following commands:
 
 Downloading
 -----------
-`d 3` to download song 3
+``d 3`` to download song 3
 
 Selecting
 ---------
