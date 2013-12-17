@@ -8,26 +8,30 @@ pms
 Features
 --------
 - Search and stream music
+- Create playlists
 - Download music
-- Create multiple playlists
 - Works with Python 2.7 and 3.x
 - Works with Windows, Linux and Mac OSX 10.9
 - No Python dependencies
 - Requires mplayer
 
-# Installation
+Installation
+------------
 
-### Using pip:
+Using pip::
     
     sudo pip install Poor-Mans-Spotify
 
-### Using git:
+Using git::
 
     git clone https://github.com/np1/pms.git
     
-###Manually:
+Manually::
 
-Download [zip](https://github.com/np1/pms/archive/master.zip)/[tar.gz](https://github.com/np1/pms/archive/master.tar.gz) file and extract
+.. _[zip file]: https://github.com/np1/pms/archive/master.zip
+.. _[tar.gz file]: https://github.com/np1/pms/archive/master.tar.gz
+
+Download [zip file]_ or [tar.gz file] and extract
 
 ### Mac OSX installation notes:
     
