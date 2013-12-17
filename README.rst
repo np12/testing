@@ -5,14 +5,15 @@ pms
 .. image:: https://pypip.in/d/Poor-Mans-Spotify/badge.png
     :target: https://pypi.python.org/pypi/Poor-Mans-Spotify
 
-
- - Search and stream music
- - Download music
- - Create multiple playlists
- - Works with Python 2.7 and 3.x
- - Works with Windows, Linux and Mac OSX 10.9
- - No Python dependencies
- - Requires mplayer
+Features
+--------
+- Search and stream music
+- Download music
+- Create multiple playlists
+- Works with Python 2.7 and 3.x
+- Works with Windows, Linux and Mac OSX 10.9
+- No Python dependencies
+- Requires mplayer
 
 # Installation
 
