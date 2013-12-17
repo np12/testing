@@ -19,6 +19,27 @@ Features
 - No Python dependencies
 - Requires mplayer
 
+Screenshots
+-----------
+
+Search
+~~~~~~
+
+.. image:: http://i.imgur.com/SnqxqZz.png
+
+Playback
+~~~~~~~~
+
+.. image:: http://i.imgur.com/3sYlktI.png
+
+.. image:: http://i.imgur.com/yzgQBmx.png
+
+Playlists
+~~~~~~~~~
+
+.. image:: http://i.imgur.com/RDEXLPW.png
+
+
 Installation
 ------------
 
@@ -145,7 +166,7 @@ playlist on disk
 
 ``rm <playlist_name>`` to delete a playlist from disk
 
-qYou can load a playlist when invoking pms using the following command:
+You can load a playlist when invoking pms using the following command:
 
     ``pms open <playlistname>``
 
@@ -154,23 +175,13 @@ qYou can load a playlist when invoking pms using the following command:
 ``h`` for help
 
 
-Screenshots
------------
 
-Search
-~~~~~~
+Other Commands
+--------------
 
-.. image:: http://i.imgur.com/SnqxqZz.png
-
-Playback
-~~~~~~~~
-
-.. image:: http://i.imgur.com/3sYlktI.png
-
-.. image:: http://i.imgur.com/yzgQBmx.png
-
-Playlists
-~~~~~~~~~
-
-.. image:: http://i.imgur.com/RDEXLPW.png
+``top`` show top tracks this week
+``top3m`` show top tracks for last 3 months
+``top6m`` show top tracks for last 6 months
+``topyear`` show top tracks for last year
+``topall`` show all time top tracks
 
