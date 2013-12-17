@@ -1,9 +1,7 @@
 pms
 ===
-.. _zip:
-https://github.com/np1/pms/archive/master.zip
-.. _tar:
-https://github.com/np1/pms/archive/master.tar.gz
+.. _zip: https://github.com/np1/pms/archive/master.zip
+.. _tar: https://github.com/np1/pms/archive/master.tar.gz
 
 
 .. image:: http://badge.fury.io/py/Poor-Mans-Spotify.png
@@ -36,8 +34,6 @@ Manually::
 
 Download `zip`_ or `tar`_ file and extract.
 
-Download `zip file <https://github.com/np1/pms/archive/master.zip>`_ or
-Download `tar.gz file <https://github.com/np1/pms/archive/master.tar.gz >`_ and extract.
 
 https://github.com/np1/pms/archive/master.zip
 https://github.com/np1/pms/archive/master.tar.gz
