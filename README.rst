@@ -1,7 +1,9 @@
 pms
 ===
-[![PyPI version](http://badge.fury.io/py/Poor-Mans-Spotify.png)](https://pypi.python.org/pypi/Poor-Mans-Spotify)
-[![Downloads](https://pypip.in/d/Poor-Mans-Spotify/badge.png)](https://pypi.python.org/pypi/Poor-Mans-Spotify)
+..image:: http://badge.fury.io/py/Poor-Mans-Spotify.png
+    :target: https://pypi.python.org/pypi/Poor-Mans-Spotify
+..image:: https://pypip.in/d/Poor-Mans-Spotify/badge.png
+    :target: https://pypi.python.org/pypi/Poor-Mans-Spotify
 
 
  - Search and stream music
