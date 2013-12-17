@@ -97,8 +97,8 @@ Downloading
 ~~~~~~~~~~~
 ``d 3`` to download song 3
 
-Selecting
----------
+Playback
+~~~~~~~~
 
 ``all`` to play all displayed tracks
 
@@ -157,48 +157,20 @@ qYou can load a playlist when invoking pms using the following command:
 Screenshots
 -----------
 
-Search:
+Search
+~~~~~~
 
 .. image:: http://i.imgur.com/SnqxqZz.png
 
-Playback:
+Playback
+~~~~~~~~
 
 .. image:: http://i.imgur.com/3sYlktI.png
 
 .. image:: http://i.imgur.com/yzgQBmx.png
 
-Playlists:
+Playlists
+~~~~~~~~~
 
 .. image:: http://i.imgur.com/RDEXLPW.png
-
-
-# Usage Example:
-
-    $ > ./pms
-
-    Enter artist/song name or \h for help or \q to quit: wagner
-
-    Searching for 'wagner'
-
-    Item   Size    Artist                Track                  Length   Bitrate 
-    1      2.1 Mb  Wilhelm Richard Wagn  Die Hochzeit (Сон в л  03:09    96      
-    2      7.2 Mb  Wilhelm Richard Wagn  Ein Sommernachtstraum  03:09    320     
-    3      9.2 Mb  Richard Wagner        Ride Of The Valkyries  10:07    128     
-    4      5.6 Mb  Wilhelm Richard Wagn  Der Weg In Walghal     04:05    192     
-    5      3.2 Mb  Wilhelm Richard Wagn  Die Hochze             02:20    192     
-    6      4.8 Mb  Richard Wagner        Carmina Burana         05:19    128     
-    7      4.8 Mb  Wagner                O Fortuna (Excalibur   05:18    128     
-    8      3.5 Mb  Wilhelm Richard Wagn  Das Leben (Жизнь)      03:55    128     
-    9      10. Mb  Johann Sebastian Bac  Concerto in D minor a  04:47    320     
-    10     9.2 Mb  Richard Wagner        Die Walküre (Der Ring  10:07    128     
-    11     3.4 Mb  Wilhelm Richard Wagn  Spring waltz           01:31    320     
-    12     2.1 Mb  Wilhelm Richard Wagn  Die Hochzeit (Der Tra  03:09    96      
-    13     9.8 Mb  Richard Wagner (Виль  The Mastersinger of N  10:42    128     
-    14     3.2 Mb  Wilhelm Richard Wagn  Die Hochzeit           02:20    192     
-    15     10. Mb  Richard Wagner        Tristan and Isolde     11:45    128     
-    16     3.5 Mb  Wagner Riñhard        Вальс I. Жизнь         03:55    128     
-    17     3.1 Mb  Wilhelm Richard Wagn  Tear                   03:27    128     
-    18     5.6 Mb  Wilhelm Richard Wagn  Requem for a dream     04:05    192     
-    19     3.8 Mb  Richard Wagner Lisa   Now we are free        04:14    128     
-    20     8.8 Mb  Wilhelm Richard Wagn  Der Weg in Walghal     06:28    192     
 
