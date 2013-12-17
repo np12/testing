@@ -28,7 +28,7 @@ Using git::
     
 Manually::
 
-Download `zip file <https://github.com/np1/pms/archive/master.zip>`_ or `tar.gz file <https://github.com/np1/pms/archive/master.tar.gz >`_ and extract.
+Download `zip file <https://github.com/np1/pms/archive/master.zip>`_ or `tar\.gz file <https://github.com/np1/pms/archive/master.tar.gz >`_ and extract.
 
 https://github.com/np1/pms/archive/master.zip
 https://github.com/np1/pms/archive/master.tar.gz
