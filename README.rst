@@ -1,193 +1,311 @@
-pms
-===
-version 0.18.26
-
-.. _zip: https://github.com/np1/pms/archive/master.zip
-.. _tar: https://github.com/np1/pms/archive/master.tar.gz
-
-
-.. image:: http://badge.fury.io/py/Poor-Mans-Spotify.png
-    :target: https://pypi.python.org/pypi/Poor-Mans-Spotify
-.. image:: https://pypip.in/d/Poor-Mans-Spotify/badge.png
-    :target: https://pypi.python.org/pypi/Poor-Mans-Spotify
+.. image:: http://badge.fury.io/py/Pafy.png
+    :target: https://pypi.python.org/pypi/Pafy
+.. image:: https://pypip.in/d/Pafy/badge.png
+    :target: https://pypi.python.org/pypi/Pafy
+.. image:: https://coveralls.io/repos/np1/pafy/badge.png?branch=develop
+    :target: https://coveralls.io/r/np1/pafy?branch=develop
+.. image:: https://travis-ci.org/np1/pafy.svg?branch=develop
+    :target: https://travis-ci.org/np1/pafy
+.. image:: https://pypip.in/wheel/Pafy/badge.png
+    :target: http://pythonwheels.com/
+    :alt: Wheel Status
 
 Features
 --------
-- Search and stream music
-- Create playlists
-- Download music
-- Works with Python 2.7 and 3.x
-- Works with Windows, Linux and Mac OSX 10.9
-- No Python dependencies
-- Requires mplayer
 
-Screenshots
------------
+- Retreive metadata such as viewcount, duration, rating, author, thumbnail, keywords
+- Download video or audio at requested resolution / bitrate / format / filesize
+- Command line tool (ytdl) for downloading directly from the command line
+- Retrieve the URL to stream the video in a player such as vlc or mplayer
+- Works with age-restricted videos and non-embeddable videos
+- Small, standalone, single importable module file (pafy.py)
+- Select highest quality stream for download or streaming
+- Download audio only (no video) in ogg or m4a format
+- Download video only (no audio) in m4v format
+- Retreive playlists and playlist metadata
+- Works with Python 2.6+ and 3.3+
+- No dependencies
 
-Search
-~~~~~~
 
-.. image:: http://i.imgur.com/SnqxqZz.png
+Documentation
+-------------
 
-Playback
-~~~~~~~~
+Full documentation is available at http://pythonhosted.org/Pafy
 
-.. image:: http://i.imgur.com/3sYlktI.png
+Usage Examples
+--------------
 
-.. image:: http://i.imgur.com/yzgQBmx.png
+Here is how to use the module in your own python code.  For command line tool
+(ytdl) instructions, see further below
 
-Playlists
-~~~~~~~~~
+.. code-block:: pycon
 
-.. image:: http://i.imgur.com/RDEXLPW.png
+    >>> import pafy
+
+create a video instance from a YouTube url:
+
+.. code-block:: pycon
+
+    >>> url = "https://www.youtube.com/watch?v=bMt47wvK6u0"
+    >>> video = pafy.new(url)
+
+get certain attributes:
+
+.. code-block:: pycon
+    
+    >>> video.title
+    'Richard Jones: Introduction to game programming - PyCon 2014'
+
+    >>> video.viewcount, video.author
+    (1916, 'PyCon 2014')
+
+    >>> video.duration, video.likes, video.dislikes
+    ('02:53:14', 25, 0)
+
+    >>> print(video.description)
+    Speaker: Richard Jones
+
+    This tutorial will walk the attendees through development of a simple game using PyGame with time left over for some experimentation and exploration of different types of games.
+
+    Slides can be found at: https://speakerdeck.com/pycon2014 and https://github.com/PyCon/2014-slides
+
+
+list available streams for a video:
+
+.. code-block:: pycon
+
+    >>> streams = video.streams
+    >>> for s in streams:
+    ...     print(s)
+    ... 
+    normal:mp4@1280x720
+    normal:webm@640x360
+    normal:mp4@640x360
+    normal:flv@320x240
+    normal:3gp@320x240
+    normal:3gp@176x144
+
+
+show all formats, file-sizes and their download url:
+
+.. code-block:: pycon
+
+    >>> for s in streams:
+    ...    print s.resolution, s.extension, s.get_filesize(), s.url
+    ... 
+    1280x720 mp4 2421958510 https://r1---sn-aiglln7e.googlevideo.com/videoplayba[...]
+    640x360 webm 547015732 https://r1---sn-aiglln7e.googlevideo.com/videoplaybac[...]
+    640x360 mp4 470655850 https://r1---sn-aiglln7e.googlevideo.com/videoplayback[...]
+    320x240 flv 345455674 https://r1---sn-aiglln7e.googlevideo.com/videoplayback[...]
+    320x240 3gp 208603447 https://r1---sn-aiglln7e.googlevideo.com/videoplayback[...]
+    176x144 3gp 60905732 https://r1---sn-aiglln7e.googlevideo.com/videoplayback?[...]
+
+
+get best resolution regardless of file format:
+
+.. code-block:: pycon
+
+    >>> best = video.getbest()
+    >>> best.resolution, best.extension
+    ('1280x720', 'mp4')
+
+
+get best resolution for a particular file format:
+(mp4, webm, flv or 3gp)
+
+.. code-block:: pycon
+
+    >>> best = video.getbest(preftype="webm")
+    >>> best.resolution, best.extension
+    ('640x360', 'webm')
+
+get url, for download or streaming in mplayer / vlc etc:
+
+.. code-block:: pycon
+    
+    >>> best.url
+
+    'http://r12---sn-aig7kner.c.youtube.com/videoplayback?expire=1369...
+
+Download video and show progress:
+
+.. code-block:: pycon
+
+    >>> best.download(quiet=False)
+
+    3,734,976 Bytes [0.20%] received. Rate: [ 719 KB/s].  ETA: [3284 secs]
+
+Download video, use specific filepath:
+
+.. code-block:: pycon
+
+    >>> myfilename = "/tmp/" + best.title + "." + best.extension
+    >>> best.download(filepath=myfilename)
+
+
+Get audio-only streams (m4a and/or ogg vorbis):
+
+.. code-block:: pycon
+
+    >>> audiostreams = video.audiostreams
+    >>> for a in audiostreams:
+    >>>     print(a.bitrate, a.extension, a.get_filesize())
+
+    128k m4a 165076649
+    128k ogg 108981120
+
+
+Download the 2nd audio stream from the above list:
+
+.. code-block:: pycon
+
+    >>> audiostreams[1].download()
+
+Get the best quality audio stream:
+
+.. code-block:: pycon
+
+    >>> bestaudio = video.getbestaudio()
+    >>> bestaudio.bitrate
+
+    '128k'
+
+Download the best quality audio file:
+
+.. code-block:: pycon
+
+    >>> bestaudio.download()
+
+show ALL formats for a video (video+audio, video-only and audio-only):
+
+.. code-block:: pycon
+
+    >>> allstreams = video.allstreams
+    ... for s in allstreams:
+    ...     print(s.mediatype, s.extension, s.quality)
+    ...
+    normal mp4 1280x720
+    normal webm 640x360
+    normal mp4 640x360
+    normal flv 320x240
+    normal 3gp 320x240
+    normal 3gp 176x144
+    video m4v 1280x720
+    video webm 720x480
+    video m4v 854x480
+    video webm 640x480
+    video m4v 640x360
+    video webm 480x360
+    video m4v 426x240
+    video webm 360x240
+    video m4v 256x144
+    audio m4a 128k
+    audio ogg 128k
 
 
 Installation
 ------------
 
-Using pip::
-    
-    sudo pip install Poor-Mans-Spotify
+Pafy can be installed using `pip <http://www.pip-installer.org>`_:
 
-Using git::
+.. code-block:: bash
 
-    git clone https://github.com/np1/pms.git
-    
-Manually::
+    $ [sudo] pip install pafy
 
-Download `zip`_ or `tar`_ file and extract.
+or use a `virtualenv <http://virtualenv.org>`_ if you don't want to install it system-wide:
 
+.. code-block:: bash
 
-Mac OSX installation notes
-~~~~~~~~~~~~~~~~~~~~~~~~~~
-    
-Download mplayer::
-
-    https://www.macupdate.com/app/mac/18580/mplayer
-
-Make a link for mplayer::
-
-    ln -s /Applications/MPlayer OSX.app/Contents/Resources/External_Binaries/mplayer.app/Contents/MacOS/mplayer /usr/local/bin/mplayer
-
-Install X11::
-
-    http://xquartz.macosforge.org/landing/
-    
-if using MplayerX::
-
-    ln -s /Applications/MPlayerX.app/Contents/Resources/binaries/x86_64/mplayer /usr/local/bin/mplayer
-
-Upgrading
----------
-
-It is recommended you update to the latest version
-
-Upgrade pip installation::
-
-    sudo pip install Poor-Mans-Spotify --upgrade
-
-Upgrade git clone::
-
-from within the pms directory;
-
-    git pull
+    $ virtualenv venv
+    $ source venv/bin/activate
+    $ pip install pafy
 
 
-Usage
------
+Alternatively you can just grab the pafy.py file and import it in your python
+code:
 
-pms is run on the command line using the command::
-    
-    pms
-    
-or on Linux/MacOS if you are in the same directory::
+.. code-block:: bash
 
-    ./pms
-    
-Enter `h` from within the program for help.
+    wget https://raw.githubusercontent.com/np1/pafy/master/pafy/pafy.py
 
 
-Searching
-~~~~~~~~~
-
-You can enter an artist/song name to search whenever the program is expecting
-text input. Searches must be prefixed with a . (dot) character.
-
-When a list of songs is displayed, such as search results or a playlist, you
-can use the following commands:
-
-Downloading
-~~~~~~~~~~~
-``d 3`` to download song 3
-
-Playback
-~~~~~~~~
-
-``all`` to play all displayed tracks
-
-``1,2,3`` to play songs 1 2 and 3
-
-``2-4,6,6-3`` to play songs 2, 3, 4, 6, 6, 5, 4, 3
-
-Note: The commands ``shuffle`` and ``repeat`` can be inserted at the start or
-end of any of the above to enable those play modes: eg, ``shuffle 1-4`` or
-``2-4,1 repeat`` 
+Command Line Tool (ytdl) Usage
+------------------------------
 
 
-Editing
-~~~~~~~
-``rm 1,5`` to remove songs 1 and 5.
+.. code-block:: bash
 
-``rm 1,2,5-7`` to remove songs 1,2 and 5-7.
+    usage: ytdl [-h] [-i] [-s]
+                [-t {audio,video,normal,all} [{audio,video,normal,all} ...]]
+                [-n N] [-b] [-a]
+                url
 
-``rm all`` to remove all songs
+    YouTube Download Tool
 
-``sw 1,3`` to swap the position of songs 1 and 3
+    positional arguments:
+      url                   YouTube video URL to download
 
-``mv 1,3`` to move song 1 to postion 3
-
-
-Playlist commands
-~~~~~~~~~~~~~~~~~
-
-``add 1,2,3`` to add songs 1,2 and 3 to the current playlist. 
-
-``add 1-4,6,8-10`` to add songs 1-4, 6, and 8-10 to the current playlist
-    
-``add 1-4,7 <playlist_name>`` to add songs 1-4 and 7 to a saved playlist.  A
-new playlist will be created if it doesn't already exist.
-
-``ls`` to list your saved playlists
-
-``open <playlist_name>`` to open a saved playlist as the current playlist
-
-``vp`` to view the current playlist (then use rm, mv and sw to modify it)
-
-``save <playlist_name>`` to save the currently displayed songs as a stored
-playlist on disk
-
-``rm <playlist_name>`` to delete a playlist from disk
-
-You can load a playlist when invoking pms using the following command:
-
-    ``pms open <playlistname>``
-
-``q`` to quit
-
-``h`` for help
+    optional arguments:
+      -h, --help            show this help message and exit
+      -i                    Display vid info
+      -s                    Display available streams
+      -t {audio,video,normal,all} [{audio,video,normal,all} ...]
+                            Stream types to display
+      -n N                  Specify stream to download by stream number (use -s to
+                            list available streams)
+      -b                    Download the best quality video (ignores -n)
+      -a                    Download the best quality audio (ignores -n)
 
 
+ytdl Examples
+-------------
 
-Other Commands
---------------
+Download best available resolution (-b):
 
-``top`` show top tracks this week
+.. code-block:: bash
 
-``top3m`` show top tracks for last 3 months
+    $ ytdl -b "http://www.youtube.com/watch?v=cyMHZVT91Dw"
 
-``top6m`` show top tracks for last 6 months
+Download best available audio stream (-a)
+(note; the full url is not required, just the video id will suffice):
 
-``topyear`` show top tracks for last year
+.. code-block:: bash
 
-``topall`` show all time top tracks
+    $ ytdl -a cyMHZVT91Dw
 
+
+get video info (-i):
+
+.. code-block:: bash
+
+    $ ytdl -i cyMHZVT91Dw
+
+list available dowload streams:
+
+.. code-block:: bash
+
+    $ ytdl cyMHZVT91Dw
+ 
+    Stream Type    Format Quality         Size            
+    ------ ----    ------ -------         ----            
+    1      normal  webm   [640x360]       33 MB           
+    2      normal  mp4    [640x360]       24 MB           
+    3      normal  flv    [320x240]       13 MB           
+    4      normal  3gp    [320x240]       10 MB           
+    5      normal  3gp    [176x144]        3 MB           
+    6      audio   m4a    [48k]            2 MB           
+    7      audio   m4a    [128k]           5 MB           
+    8      audio   m4a    [256k]          10 MB     
+
+ 
+Download mp4 640x360 (ie. stream number 2):
+
+.. code-block:: bash
+
+    $ ytdl -n2 cyMHZVT91Dw
+
+Download m4a audio stream at 256k bitrate:
+
+.. code-block:: bash
+
+    $ ytdl -n8 cyMHZVT91Dw
