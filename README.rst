@@ -50,10 +50,11 @@ Using `git <http://www.git-scm.com>`_::
     cd mps
     python setup.py install
    
-Manually
+Manually:
 
-Download `zip <https://github.com/np1/mps/archive/master.zip>`_ or `tar.gz <https://github.com/np1/mps/archive/master.tar.gz>`_ and extract:
-From within the mps directory::
+    Download `zip <https://github.com/np1/mps/archive/master.zip>`_ or `tar.gz <https://github.com/np1/mps/archive/master.tar.gz>`_ and extract
+
+    From within the mps directory::
 
     python setup.py install
 
