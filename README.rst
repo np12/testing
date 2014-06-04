@@ -52,9 +52,9 @@ Using `git <http://www.git-scm.com>`_::
    
 Manually:
 
-    Download `zip <https://github.com/np1/mps/archive/master.zip>`_ or `tar.gz <https://github.com/np1/mps/archive/master.tar.gz>`_ and extract
+  Download `zip <https://github.com/np1/mps/archive/master.zip>`_ or `tar.gz <https://github.com/np1/mps/archive/master.tar.gz>`_ and extract
 
-    From within the mps directory::
+  From within the mps directory::
 
     python setup.py install
 
