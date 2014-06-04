@@ -1,311 +1,259 @@
-.. image:: http://badge.fury.io/py/Pafy.png
-    :target: https://pypi.python.org/pypi/Pafy
-.. image:: https://pypip.in/d/Pafy/badge.png
-    :target: https://pypi.python.org/pypi/Pafy
-.. image:: https://coveralls.io/repos/np1/pafy/badge.png?branch=develop
-    :target: https://coveralls.io/r/np1/pafy?branch=develop
-.. image:: https://travis-ci.org/np1/pafy.svg?branch=develop
-    :target: https://travis-ci.org/np1/pafy
-.. image:: https://pypip.in/wheel/Pafy/badge.png
-    :target: http://pythonwheels.com/
-    :alt: Wheel Status
+mps
+===
+
+.. image:: http://badge.fury.io/py/mps.png
+    :target: https://pypi.python.org/pypi/mps
+.. image:: https://pypip.in/d/mps/badge.png
+    :target: https://pypi.python.org/pypi/mps
 
 Features
 --------
+- Search and stream music
+- Search albums or single tracks
+- Create playlists
+- Download tracks
+- Works with Python 2.7+ and 3.3+
+- Works with Windows, Linux and Mac OS X 
+- No Python dependencies
+- Requires mplayer
 
-- Retreive metadata such as viewcount, duration, rating, author, thumbnail, keywords
-- Download video or audio at requested resolution / bitrate / format / filesize
-- Command line tool (ytdl) for downloading directly from the command line
-- Retrieve the URL to stream the video in a player such as vlc or mplayer
-- Works with age-restricted videos and non-embeddable videos
-- Small, standalone, single importable module file (pafy.py)
-- Select highest quality stream for download or streaming
-- Download audio only (no video) in ogg or m4a format
-- Download video only (no audio) in m4v format
-- Retreive playlists and playlist metadata
-- Works with Python 2.6+ and 3.3+
-- No dependencies
+Screenshots
+-----------
 
+Search
+~~~~~~
 
-Documentation
--------------
+.. image:: http://i.imgur.com/SnqxqZz.png
 
-Full documentation is available at http://pythonhosted.org/Pafy
+Playback
+~~~~~~~~
 
-Usage Examples
---------------
+.. image:: http://i.imgur.com/3sYlktI.png
 
-Here is how to use the module in your own python code.  For command line tool
-(ytdl) instructions, see further below
+Playlists
+~~~~~~~~~
 
-.. code-block:: pycon
+.. image:: http://i.imgur.com/RDEXLPW.png
 
-    >>> import pafy
-
-create a video instance from a YouTube url:
-
-.. code-block:: pycon
-
-    >>> url = "https://www.youtube.com/watch?v=bMt47wvK6u0"
-    >>> video = pafy.new(url)
-
-get certain attributes:
-
-.. code-block:: pycon
-    
-    >>> video.title
-    'Richard Jones: Introduction to game programming - PyCon 2014'
-
-    >>> video.viewcount, video.author
-    (1916, 'PyCon 2014')
-
-    >>> video.duration, video.likes, video.dislikes
-    ('02:53:14', 25, 0)
-
-    >>> print(video.description)
-    Speaker: Richard Jones
-
-    This tutorial will walk the attendees through development of a simple game using PyGame with time left over for some experimentation and exploration of different types of games.
-
-    Slides can be found at: https://speakerdeck.com/pycon2014 and https://github.com/PyCon/2014-slides
-
-
-list available streams for a video:
-
-.. code-block:: pycon
-
-    >>> streams = video.streams
-    >>> for s in streams:
-    ...     print(s)
-    ... 
-    normal:mp4@1280x720
-    normal:webm@640x360
-    normal:mp4@640x360
-    normal:flv@320x240
-    normal:3gp@320x240
-    normal:3gp@176x144
-
-
-show all formats, file-sizes and their download url:
-
-.. code-block:: pycon
-
-    >>> for s in streams:
-    ...    print s.resolution, s.extension, s.get_filesize(), s.url
-    ... 
-    1280x720 mp4 2421958510 https://r1---sn-aiglln7e.googlevideo.com/videoplayba[...]
-    640x360 webm 547015732 https://r1---sn-aiglln7e.googlevideo.com/videoplaybac[...]
-    640x360 mp4 470655850 https://r1---sn-aiglln7e.googlevideo.com/videoplayback[...]
-    320x240 flv 345455674 https://r1---sn-aiglln7e.googlevideo.com/videoplayback[...]
-    320x240 3gp 208603447 https://r1---sn-aiglln7e.googlevideo.com/videoplayback[...]
-    176x144 3gp 60905732 https://r1---sn-aiglln7e.googlevideo.com/videoplayback?[...]
-
-
-get best resolution regardless of file format:
-
-.. code-block:: pycon
-
-    >>> best = video.getbest()
-    >>> best.resolution, best.extension
-    ('1280x720', 'mp4')
-
-
-get best resolution for a particular file format:
-(mp4, webm, flv or 3gp)
-
-.. code-block:: pycon
-
-    >>> best = video.getbest(preftype="webm")
-    >>> best.resolution, best.extension
-    ('640x360', 'webm')
-
-get url, for download or streaming in mplayer / vlc etc:
-
-.. code-block:: pycon
-    
-    >>> best.url
-
-    'http://r12---sn-aig7kner.c.youtube.com/videoplayback?expire=1369...
-
-Download video and show progress:
-
-.. code-block:: pycon
-
-    >>> best.download(quiet=False)
-
-    3,734,976 Bytes [0.20%] received. Rate: [ 719 KB/s].  ETA: [3284 secs]
-
-Download video, use specific filepath:
-
-.. code-block:: pycon
-
-    >>> myfilename = "/tmp/" + best.title + "." + best.extension
-    >>> best.download(filepath=myfilename)
-
-
-Get audio-only streams (m4a and/or ogg vorbis):
-
-.. code-block:: pycon
-
-    >>> audiostreams = video.audiostreams
-    >>> for a in audiostreams:
-    >>>     print(a.bitrate, a.extension, a.get_filesize())
-
-    128k m4a 165076649
-    128k ogg 108981120
-
-
-Download the 2nd audio stream from the above list:
-
-.. code-block:: pycon
-
-    >>> audiostreams[1].download()
-
-Get the best quality audio stream:
-
-.. code-block:: pycon
-
-    >>> bestaudio = video.getbestaudio()
-    >>> bestaudio.bitrate
-
-    '128k'
-
-Download the best quality audio file:
-
-.. code-block:: pycon
-
-    >>> bestaudio.download()
-
-show ALL formats for a video (video+audio, video-only and audio-only):
-
-.. code-block:: pycon
-
-    >>> allstreams = video.allstreams
-    ... for s in allstreams:
-    ...     print(s.mediatype, s.extension, s.quality)
-    ...
-    normal mp4 1280x720
-    normal webm 640x360
-    normal mp4 640x360
-    normal flv 320x240
-    normal 3gp 320x240
-    normal 3gp 176x144
-    video m4v 1280x720
-    video webm 720x480
-    video m4v 854x480
-    video webm 640x480
-    video m4v 640x360
-    video webm 480x360
-    video m4v 426x240
-    video webm 360x240
-    video m4v 256x144
-    audio m4a 128k
-    audio ogg 128k
 
 
 Installation
 ------------
 
-Pafy can be installed using `pip <http://www.pip-installer.org>`_:
+Using `pip <http://www.pip-installer.org>`_::
+    
+    sudo pip install mps
 
-.. code-block:: bash
+Using `git <http://www.git-scm.com>`_::
 
-    $ [sudo] pip install pafy
+    git clone https://github.com/np1/mps.git
+    cd mps
+    python setup.py install
+   
+Manually
 
-or use a `virtualenv <http://virtualenv.org>`_ if you don't want to install it system-wide:
+Download `zip <https://github.com/np1/mps/archive/master.zip>`_ or `tar.gz <https://github.com/np1/mps/archive/master.tar.gz>`_ and extract:
+From within the mps directory::
 
-.. code-block:: bash
-
-    $ virtualenv venv
-    $ source venv/bin/activate
-    $ pip install pafy
-
-
-Alternatively you can just grab the pafy.py file and import it in your python
-code:
-
-.. code-block:: bash
-
-    wget https://raw.githubusercontent.com/np1/pafy/master/pafy/pafy.py
+    python setup.py install
 
 
-Command Line Tool (ytdl) Usage
-------------------------------
+Mac OS X installation notes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    
+Install mplayer with `MacPorts <http://www.macports.org>`_::
+
+    sudo port install MPlayer
 
 
-.. code-block:: bash
+Windows installation notes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    usage: ytdl [-h] [-i] [-s]
-                [-t {audio,video,normal,all} [{audio,video,normal,all} ...]]
-                [-n N] [-b] [-a]
-                url
+Install the python `colorama <https://pypi.python.org/pypi/colorama>`_ module to get colors (optional)::
 
-    YouTube Download Tool
+    pip install colorama
 
-    positional arguments:
-      url                   YouTube video URL to download
+Download mplayer for your CPU type from the "Build Selection table" `here
+<http://oss.netfarm.it/mplayer-win32.php>`_. 
 
-    optional arguments:
-      -h, --help            show this help message and exit
-      -i                    Display vid info
-      -s                    Display available streams
-      -t {audio,video,normal,all} [{audio,video,normal,all} ...]
-                            Stream types to display
-      -n N                  Specify stream to download by stream number (use -s to
-                            list available streams)
-      -b                    Download the best quality video (ignores -n)
-      -a                    Download the best quality audio (ignores -n)
+Extract the mplayer.exe file, saving it to your mps directory
 
 
-ytdl Examples
+Upgrading
+---------
+
+It is recommended you update to the latest version.
+
+Upgrade pip installation::
+
+    sudo pip install mps --upgrade
+
+Upgrade git clone::
+
+    (from within the mps directory)
+
+    git pull
+
+Usage
+-----
+
+mps is run on the command line using the command::
+    
+    mps
+    
+Enter ``h`` from within the program for help.
+
+Searching
+~~~~~~~~~
+
+You can enter an artist/song name to search for songs.
+Track searches must be prefixed with either a . or / character.
+
+Enter ``n`` or ``p`` to go to the next / previous page of results
+
+To search for an album, enter ``album`` optionally followed by the album title.
+
+When a list of songs is displayed, such as search results or a playlist, you
+can use the following commands:
+
+Downloading
+~~~~~~~~~~~
+``d 3`` to download song 3
+
+Playback
+~~~~~~~~
+
+``all`` to play all displayed tracks
+
+``1,2,3`` to play songs 1 2 and 3
+
+``2-4,6,6-3`` to play songs 2, 3, 4, 6, 6, 5, 4, 3
+
+Note: The commands ``shuffle`` and ``repeat`` can be inserted at the start or
+end of any of the above to enable those play modes: eg, ``shuffle 1-4`` or
+``2-4,1 repeat`` 
+
+Editing
+~~~~~~~
+``rm 1,5`` to remove songs 1 and 5.
+
+``rm 1,2,5-7`` to remove songs 1,2 and 5-7.
+
+``rm all`` to remove all songs
+
+``sw 1,3`` to swap the position of songs 1 and 3
+
+``mv 1,3`` to move song 1 to postion 3
+
+Playlist commands
+~~~~~~~~~~~~~~~~~
+
+``add 1,2,3`` to add songs 1,2 and 3 to the current playlist. 
+
+``add 1-4,6,8-10`` to add songs 1-4, 6, and 8-10 to the current playlist
+    
+``add 1-4,7 <playlist_name>`` to add songs 1-4 and 7 to a saved playlist.  A
+new playlist will be created if the given name doesn't already exist.
+
+``vp`` to view the current playlist (then use rm, mv and sw to modify it)
+
+``ls`` to list your saved playlists
+
+``open <playlist_name or ID>`` to open a saved playlist as the current playlist 
+
+``view <playlist_name or ID>`` to view a playlist (leaves current playlist intact)
+
+``play <playlist_name or ID>`` to play a saved playlist directly.
+
+``save`` or ``save <playlist_name>`` to save the currently displayed songs as a
+stored playlist on disk
+
+``rmp <playlist_name or ID>`` to delete a playlist from disk
+
+``mv <old_name or ID> <new_name>`` to rename a playlist
+
+``q`` to quit
+
+``h`` for help
+
+Other Commands
+--------------
+
+``top`` show top tracks this week
+
+``top3m`` show top tracks for last 3 months
+
+``top6m`` show top tracks for last 6 months
+
+``topyear`` show top tracks for last year
+
+``topall`` show all time top tracks
+
+``list [pleer playlist url]``` to import a playlist from the web.
+
+Advanced Tips
 -------------
 
-Download best available resolution (-b):
+Playlist Name Completion
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+When using ``open``, ``view`` or ``play``  to access a playlist, you can enter
+the first few characters instead of the whole name.  The first alphabetically
+matching playlist will be opened / displayed.
 
-    $ ytdl -b "http://www.youtube.com/watch?v=cyMHZVT91Dw"
+Invocation
+~~~~~~~~~~
 
-Download best available audio stream (-a)
-(note; the full url is not required, just the video id will suffice):
+To play a saved playlist when invoking mps use the following command:
 
-.. code-block:: bash
+    ``mps play <playlistname>``
 
-    $ ytdl -a cyMHZVT91Dw
+This also works for other commands, eg:
 
+    ``mps .mozart`` to search 
 
-get video info (-i):
+    ``mps view <playlistname>`` to view a saved playlist
 
-.. code-block:: bash
+    ``mps ls`` to list saved playlists
 
-    $ ytdl -i cyMHZVT91Dw
+    ``mps top`` to list top tracks this week
 
-list available dowload streams:
+    ``mps open moz`` to open a saved playlist called mozart.
 
-.. code-block:: bash
+Specifying Ranges
+~~~~~~~~~~~~~~~~~
 
-    $ ytdl cyMHZVT91Dw
- 
-    Stream Type    Format Quality         Size            
-    ------ ----    ------ -------         ----            
-    1      normal  webm   [640x360]       33 MB           
-    2      normal  mp4    [640x360]       24 MB           
-    3      normal  flv    [320x240]       13 MB           
-    4      normal  3gp    [320x240]       10 MB           
-    5      normal  3gp    [176x144]        3 MB           
-    6      audio   m4a    [48k]            2 MB           
-    7      audio   m4a    [128k]           5 MB           
-    8      audio   m4a    [256k]          10 MB     
+When selecting songs for playback, removing or adding you can use ``5-`` to 
+select song 5 upward and ``-5`` to select up to song 5.  This can be included
+with other choices so for example: ``5,3,7-,-2``.  You can also use spaces
+instead of commas eg. ``5 3 7- -2``.
 
- 
-Download mp4 640x360 (ie. stream number 2):
+Quality / Bitrate
+~~~~~~~~~~~~~~~~~
 
-.. code-block:: bash
+Add ``+best`` to a search query to return high bitrate results or ``+good`` to
+exclude them.
 
-    $ ytdl -n2 cyMHZVT91Dw
+Using MPV instead of MPlayer
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Download m4a audio stream at 256k bitrate:
+If you have `mpv <http://mpv.io>`_ installed and want to use that instead of mplayer;
 
-.. code-block:: bash
+From within mps::
 
-    $ ytdl -n8 cyMHZVT91Dw
+    set player mpv
+    set playerargs --really-quiet --no-video
+
+Other Configuration
+~~~~~~~~~~~~~~~~~~~
+
+To view configuration, enter ``set`` and to change any item enter: 
+``set <item> <value>``.  This can be used to change the download path (DDIR)
+and will persist after exiting the program.  To reset all settings to default,
+use ``set all default`` or for a single item, ``set <item> default``
+
+Disclaimer
+~~~~~~~~~~
+
+Use this software at your own risk, it downloads content from pleer.com, an
+online mp3 file repository.
