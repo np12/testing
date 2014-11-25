@@ -1,51 +1,96 @@
-``
-                                                _         _
-    _ __ ___  _ __  ___       _   _  ___  _   _| |_ _   _| |__   ___
-   | '_ ` _ \| '_ \/ __|_____| | | |/ _ \| | | | __| | | | '_ \ / _ \
-   | | | | | | |_) \__ \_____| |_| | (_) | |_| | |_| |_| | |_) |  __/
-   |_| |_| |_| .__/|___/      \__, |\___/ \__,_|\__|\__,_|_.__/ \___|
-             |_|              |___/               
+::
 
-``
+ .
+                                                 _         _
+     _ __ ___  _ __  ___       _   _  ___  _   _| |_ _   _| |__   ___
+    | '_ ` _ \| '_ \/ __|_____| | | |/ _ \| | | | __| | | | '_ \ / _ \
+    | | | | | | |_) \__ \_____| |_| | (_) | |_| | |_| |_| | |_) |  __/
+    |_| |_| |_| .__/|___/      \__, |\___/ \__,_|\__|\__,_|_.__/ \___|
+              |_|              |___/               
 
+.. image:: http://badge.fury.io/py/mps-youtube.png
+    :target: https://pypi.python.org/pypi/mps-youtube
+.. image:: https://pypip.in/d/mps-youtube/badge.png
+    :target: https://pypi.python.org/pypi/mps-youtube
+.. image:: https://pypip.in/wheel/mps-youtube/badge.png
+    :target: http://pythonwheels.com/
+    :alt: Wheel Status
 
-
-amps
-===
-
-.. image:: http://badge.fury.io/py/mps.png
-    :target: https://pypi.python.org/pypi/mps
-.. image:: https://pypip.in/d/mps/badge.png
-    :target: https://pypi.python.org/pypi/mps
 
 Features
 --------
-- Search and stream music
-- Search albums or single tracks
-- Create playlists
-- Download tracks
-- Works with Python 2.7+ and 3.3+
+- Search and play audio/video from YouTube
+- Search tracks of albums by album title
+- Search and import YouTube playlists
+- Create and save local playlists
+- Download audio/video
+- View video comments
+- Works with Python 2.7+ and 3.x
 - Works with Windows, Linux and Mac OS X 
-- No Python dependencies
-- Requires mplayer
+- Requires mplayer or mpv
+
+This project is based on `mps <https://github.com/np1/mps>`_, a terminal based program to search, stream and download music.  This implementation uses YouTube as a source of content and can play and download video as well as audio.  The `pafy <https://github.com/np1/pafy>`_ library handles interfacing with YouTube.
+
+`FAQ / Troubleshooting common issues <https://github.com/np1/mps-youtube/wiki/Troubleshooting>`_
 
 Screenshots
 -----------
 
+
 Search
 ~~~~~~
+.. image:: http://np1.github.io/mpsyt-images2/std-search.png
 
-.. image:: http://i.imgur.com/SnqxqZz.png
+A standard search is performed by entering ``/`` followed by search terms.
 
-Playback
+Local Playlists
+~~~~~~~~~~~~~~~
+.. image:: http://np1.github.io/mpsyt-images2/local-playlists.png
+
+Search result items can easily be stored in local playlists.
+
+YouTube Playlists
+~~~~~~~~~~~~~~~~~
+.. image:: http://np1.github.io/mpsyt-images2/playlist-search.png
+
+YouTube playlists can be searched and played or saved as local playlists.
+
+Download
 ~~~~~~~~
+.. image:: http://np1.github.io/mpsyt-images2/download.png
 
-.. image:: http://i.imgur.com/3sYlktI.png
+Content can be downloaded in various formats and resolutions.
 
-Playlists
-~~~~~~~~~
+Comments
+~~~~~~~~
+.. image:: http://np1.github.io/mpsyt-images2/comments.png
 
-.. image:: http://i.imgur.com/RDEXLPW.png
+A basic comments browser is available to view YouTube user comments.
+
+Music Album Matching
+~~~~~~~~~~~~~~~~~~~~
+
+.. image:: http://np1.github.io/mpsyt-images2/album-1.png
+
+.. image:: http://np1.github.io/mpsyt-images2/album-2.png
+
+An album title can be specified and mps-youtube will attempt to find matches for each track of the album, based on title and duration.  Type ``help search`` for more info.  
+
+Customisation
+~~~~~~~~~~~~~
+
+.. image:: http://np1.github.io/mpsyt-images2/customisation2.png
+
+Search results can be customised to display additional fields and ordered by various criteria.
+
+This configuration was set up using the following commands::
+
+    set max-results 50
+    set console-width 120
+    set columns user:14 date comments rating likes dislikes category:9 views
+    set order views
+
+Type ``help config`` for help on configuration options
 
 
 
@@ -54,22 +99,7 @@ Installation
 
 Using `pip <http://www.pip-installer.org>`_::
     
-    sudo pip install mps
-
-Using `git <http://www.git-scm.com>`_::
-
-    git clone https://github.com/np1/mps.git
-    cd mps
-    python setup.py install
-   
-Manually:
-
-  Download `zip <https://github.com/np1/mps/archive/master.zip>`_ or `tar.gz <https://github.com/np1/mps/archive/master.tar.gz>`_ and extract
-
-  From within the mps directory::
-
-    python setup.py install
-
+    [sudo] pip install mps-youtube
 
 Mac OS X installation notes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -77,6 +107,10 @@ Mac OS X installation notes
 Install mplayer with `MacPorts <http://www.macports.org>`_::
 
     sudo port install MPlayer
+
+Or with `Homebrew <http://brew.sh>`_::
+
+    brew install mplayer
 
 
 Windows installation notes
@@ -86,187 +120,26 @@ Install the python `colorama <https://pypi.python.org/pypi/colorama>`_ module to
 
     pip install colorama
 
-Download mplayer for your CPU type from the "Build Selection table" `here
-<http://oss.netfarm.it/mplayer-win32.php>`_. 
+Download mplayer for your CPU type from the "Build Selection table" `here <http://oss.netfarm.it/mplayer-win32.php>`_.
 
-Extract the mplayer.exe file, saving it to your mps directory
+Extract the ``mplayer.exe`` file, saving it to the folder that ``mpsyt.exe`` resides in (usually ``C:\PythonXX\Scripts\``) or to a folder in the system path.
+
+Alternatively to mplayer, use ``mpv.exe`` which can be downloaded from: http://mpv.io/installation/
 
 
 Upgrading
 ---------
 
-It is recommended you update to the latest version.
-
 Upgrade pip installation::
 
-    sudo pip install mps --upgrade
-
-Upgrade git clone::
-
-    (from within the mps directory)
-
-    git pull
+    [sudo] pip install mps-youtube --upgrade
 
 Usage
 -----
 
-mps is run on the command line using the command::
+mps-youtube is run on the command line using the command::
     
-    mps
+    mpsyt
     
 Enter ``h`` from within the program for help.
 
-Searching
-~~~~~~~~~
-
-You can enter an artist/song name to search for songs.
-Track searches must be prefixed with either a . or / character.
-
-Enter ``n`` or ``p`` to go to the next / previous page of results
-
-To search for an album, enter ``album`` optionally followed by the album title.
-
-When a list of songs is displayed, such as search results or a playlist, you
-can use the following commands:
-
-Downloading
-~~~~~~~~~~~
-``d 3`` to download song 3
-
-Playback
-~~~~~~~~
-
-``all`` to play all displayed tracks
-
-``1,2,3`` to play songs 1 2 and 3
-
-``2-4,6,6-3`` to play songs 2, 3, 4, 6, 6, 5, 4, 3
-
-Note: The commands ``shuffle`` and ``repeat`` can be inserted at the start or
-end of any of the above to enable those play modes: eg, ``shuffle 1-4`` or
-``2-4,1 repeat`` 
-
-Editing
-~~~~~~~
-``rm 1,5`` to remove songs 1 and 5.
-
-``rm 1,2,5-7`` to remove songs 1,2 and 5-7.
-
-``rm all`` to remove all songs
-
-``sw 1,3`` to swap the position of songs 1 and 3
-
-``mv 1,3`` to move song 1 to postion 3
-
-Playlist commands
-~~~~~~~~~~~~~~~~~
-
-``add 1,2,3`` to add songs 1,2 and 3 to the current playlist. 
-
-``add 1-4,6,8-10`` to add songs 1-4, 6, and 8-10 to the current playlist
-    
-``add 1-4,7 <playlist_name>`` to add songs 1-4 and 7 to a saved playlist.  A
-new playlist will be created if the given name doesn't already exist.
-
-``vp`` to view the current playlist (then use rm, mv and sw to modify it)
-
-``ls`` to list your saved playlists
-
-``open <playlist_name or ID>`` to open a saved playlist as the current playlist 
-
-``view <playlist_name or ID>`` to view a playlist (leaves current playlist intact)
-
-``play <playlist_name or ID>`` to play a saved playlist directly.
-
-``save`` or ``save <playlist_name>`` to save the currently displayed songs as a
-stored playlist on disk
-
-``rmp <playlist_name or ID>`` to delete a playlist from disk
-
-``mv <old_name or ID> <new_name>`` to rename a playlist
-
-``q`` to quit
-
-``h`` for help
-
-Other Commands
---------------
-
-``top`` show top tracks this week
-
-``top3m`` show top tracks for last 3 months
-
-``top6m`` show top tracks for last 6 months
-
-``topyear`` show top tracks for last year
-
-``topall`` show all time top tracks
-
-``list [pleer playlist url]``` to import a playlist from the web.
-
-Advanced Tips
--------------
-
-Playlist Name Completion
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-When using ``open``, ``view`` or ``play``  to access a playlist, you can enter
-the first few characters instead of the whole name.  The first alphabetically
-matching playlist will be opened / displayed.
-
-Invocation
-~~~~~~~~~~
-
-To play a saved playlist when invoking mps use the following command:
-
-    ``mps play <playlistname>``
-
-This also works for other commands, eg:
-
-    ``mps .mozart`` to search 
-
-    ``mps view <playlistname>`` to view a saved playlist
-
-    ``mps ls`` to list saved playlists
-
-    ``mps top`` to list top tracks this week
-
-    ``mps open moz`` to open a saved playlist called mozart.
-
-Specifying Ranges
-~~~~~~~~~~~~~~~~~
-
-When selecting songs for playback, removing or adding you can use ``5-`` to 
-select song 5 upward and ``-5`` to select up to song 5.  This can be included
-with other choices so for example: ``5,3,7-,-2``.  You can also use spaces
-instead of commas eg. ``5 3 7- -2``.
-
-Quality / Bitrate
-~~~~~~~~~~~~~~~~~
-
-Add ``+best`` to a search query to return high bitrate results or ``+good`` to
-exclude them.
-
-Using MPV instead of MPlayer
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-If you have `mpv <http://mpv.io>`_ installed and want to use that instead of mplayer;
-
-From within mps::
-
-    set player mpv
-    set playerargs --really-quiet --no-video
-
-Other Configuration
-~~~~~~~~~~~~~~~~~~~
-
-To view configuration, enter ``set`` and to change any item enter: 
-``set <item> <value>``.  This can be used to change the download path (DDIR)
-and will persist after exiting the program.  To reset all settings to default,
-use ``set all default`` or for a single item, ``set <item> default``
-
-Disclaimer
-~~~~~~~~~~
-
-Use this software at your own risk, it downloads content from pleer.com, an
-online mp3 file repository.
